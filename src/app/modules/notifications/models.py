@@ -4,10 +4,10 @@ from app.core.database import Base
 
 class Notification(Base):
     __tablename__ = "notifications"
-    id = Column(Interger, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255))
     content = Column(String)
     type = Column(String(50))
     is_read = Column(Boolean, default=False)
-    user_id = Column(Interger, ForeignKey("users.id", ondelete="CASCADE"))
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
     created_at = Column(DateTime(timezone=True), server_default=func.now())
