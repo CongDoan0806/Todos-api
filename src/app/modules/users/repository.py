@@ -33,7 +33,7 @@ class UserRepository:
     def update_user(self, user_id: int, user_update: schemas.UserUpdate):
         db_user = self.get_user(user_id)
         if db_user:
-            update_data = user_update.dict(exclude_unset=True)
+            update_data = user_update.model_dump(exclude_unset=True)
             if "password" in update_data:
                 update_data["hashed_password"] = get_password_hash(update_data.pop("password"))
             for field, value in update_data.items():
